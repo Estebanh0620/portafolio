@@ -152,7 +152,7 @@ function renderGrid(){
 function open(i){
   const v = VIDEOS[i], id = encodeURIComponent(v.id), ti = esc(v.title);
   dlg.dataset.fmt = v.fmt;
-  if(v.type==="youtube") player.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" title="${ti}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+  if(v.type==="youtube") player.innerHTML = `<iframe src="https://youtu.be/SGbNJopyXxU?si=GBTpnLJoUeN0Jlwb${id}?autoplay=1&rel=0" title="${ti}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
   else if(v.type==="vimeo") player.innerHTML = `<iframe src="https://player.vimeo.com/video/${id}?autoplay=1" title="${ti}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
   else if(v.type==="instagram") player.innerHTML = `<iframe src="https://www.instagram.com/reel/${id}/embed" title="${ti}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
   else player.innerHTML = `<video src="${esc(v.id)}" controls autoplay playsinline></video>`;
