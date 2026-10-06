@@ -84,16 +84,14 @@ dialog[data-fmt="reel"] .player{width:auto;max-width:100%;height:min(78vh,700px)
 
   <section class="about" id="sobre-mi">
     <h2>Sobre mí</h2>
-    <p>Escribe aquí dos o tres frases: quién eres, qué tipo de videos haces y con quién has trabajado. Cuenta qué te diferencia y qué tipo de proyectos buscas.</p>
+    <p>Soy estudiante de Ingeniería Multimedia y editor de video freelance, enfocado en crear contenido profesional para proyectos corporativos, educativos y redes sociales. Combino edición, diseño y criterio audiovisual para conseguir videos limpios, dinámicos y fáciles de entender, especialmente cuando el contenido necesita comunicar ideas complejas sin perder naturalidad. Busco colaborar con empresas y profesionales que valoren una edición cuidadosa, funcional y pensada para generar impacto.</p>
   </section>
 
   <section class="contact" id="contacto">
     <h2>¿Hacemos algo juntos?</h2>
-    <a class="big" href="mailto:tucorreo@ejemplo.com">tucorreo@ejemplo.com</a>
+    <a class="big" href="mailto:estebanm.hc03@gmail.com">estebanm.hc03@gmail.com</a>
     <ul>
-      <li><a href="https://instagram.com/tuusuario">Instagram</a></li>
-      <li><a href="https://youtube.com/@tuusuario">YouTube</a></li>
-      <li><a href="https://vimeo.com/tuusuario">Vimeo</a></li>
+      <li><a href="https://www.linkedin.com/in/esteban-hurtado-141703421/">Linkedin</a></li>
     </ul>
   </section>
 </div>
@@ -153,8 +151,7 @@ function open(i){
   const v = VIDEOS[i], id = encodeURIComponent(v.id), ti = esc(v.title);
   dlg.dataset.fmt = v.fmt;
   if(v.type==="youtube") player.innerHTML = `<iframe src="https://youtu.be/SGbNJopyXxU?si=GBTpnLJoUeN0Jlwb${id}?autoplay=1&rel=0" title="${ti}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
-  else if(v.type==="vimeo") player.innerHTML = `<iframe src="https://player.vimeo.com/video/${id}?autoplay=1" title="${ti}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
-  else if(v.type==="instagram") player.innerHTML = `<iframe src="https://www.instagram.com/reel/${id}/embed" title="${ti}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+  else if(v.type==="Linkedin") player.innerHTML = `<iframe src="https://www.linkedin.com/in/esteban-hurtado-141703421/${id}" title="${ti}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
   else player.innerHTML = `<video src="${esc(v.id)}" controls autoplay playsinline></video>`;
   document.getElementById("dt").textContent = v.title;
   document.getElementById("dm").textContent = `${v.fmt==="reel"?"Reel":"YouTube"} · ${v.cat} · ${v.year}`;
