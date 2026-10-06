@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tu Nombre — Portafolio de video</title>
+<meta name="description" content="Portafolio de videos de Tu Nombre.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E9ECF1; --ink:#101826; --muted:#5A6577; --line:#C9D0DB; --accent:#2B50E6; --card:#F6F8FB;
+  --font:"Familjen Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0F1623;--ink:#E8ECF4;--muted:#8E9AB0;--line:#263146;--accent:#6F8BFF;--card:#172033}
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+header.top a{text-decoration:none;font-weight:500}
+header.top nav{display:flex;gap:20px}
+.hero{padding:7vh 0 6vh}
+.hero h1{font-size:clamp(3rem,13vw,9rem);line-height:.9;letter-spacing:-.04em;font-weight:700}
+.hero p{max-width:34ch;margin-top:24px;font-size:1.2rem;color:var(--muted)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;padding:20px 0;border-top:1px solid var(--line)}
+.filters button{font:inherit;background:none;color:var(--ink);border:1px solid var(--line);border-radius:99px;padding:6px 16px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:28px 20px;padding-bottom:60px}
+.item{background:none;border:0;padding:0;text-align:left;font:inherit;color:inherit;cursor:pointer}
+.thumb{position:relative;aspect-ratio:16/9;background:linear-gradient(135deg,var(--accent),var(--ink));overflow:hidden;border-radius:4px}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.item:hover .thumb img{transform:scale(1.04)}
+.play{position:absolute;left:12px;bottom:12px;width:44px;height:44px;border-radius:50%;background:var(--bg);display:grid;place-items:center}
+.play::after{content:"";border-left:14px solid var(--ink);border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:4px}
+.dur{position:absolute;right:10px;bottom:10px;background:var(--ink);color:var(--bg);font-size:.8rem;padding:2px 8px;border-radius:3px;font-variant-numeric:tabular-nums}
+.item h3{margin-top:10px;font-size:1.15rem;font-weight:500}
+.item span.meta{color:var(--muted);font-size:.95rem}
+.about{display:grid;gap:24px;padding:50px 0;border-top:1px solid var(--line)}
+.about h2,.contact h2{font-size:clamp(1.8rem,5vw,3rem);letter-spacing:-.02em;line-height:1.05}
+.about p{max-width:60ch;color:var(--muted);font-size:1.1rem}
+@media(min-width:760px){.about{grid-template-columns:1fr 2fr}}
+.contact{padding:50px 0 80px;border-top:1px solid var(--line)}
+.contact a.big{display:inline-block;margin-top:16px;font-size:clamp(1.2rem,4vw,2rem);color:var(--accent);word-break:break-all}
+.contact ul{list-style:none;padding:0;display:flex;gap:20px;flex-wrap:wrap;margin-top:24px}
+dialog{border:0;padding:0;background:#000;width:min(960px,94vw);border-radius:6px;color:#fff}
+dialog::backdrop{background:rgba(5,8,14,.85)}
+.player{aspect-ratio:16/9;width:100%}
+.player iframe,.player video{width:100%;height:100%;border:0;display:block}
+.dinfo{padding:14px 18px;display:flex;justify-content:space-between;gap:16px;align-items:start;background:var(--card);color:var(--ink)}
+.dinfo p{color:var(--muted);font-size:.95rem}
+.dinfo button{font:inherit;background:var(--ink);color:var(--bg);border:0;border-radius:4px;padding:6px 14px;cursor:pointer}
+.empty{color:var(--muted);padding:20px 0}
+.sec h2{font-size:1.4rem;font-weight:500;padding:8px 0 18px}
+.grid.reels{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:20px 14px}
+.reels .thumb{aspect-ratio:9/16}
+.reels .play{width:36px;height:36px;left:8px;bottom:8px}
+.reels .item h3{font-size:1rem}
+dialog[data-fmt="reel"]{width:min(420px,94vw)}
+dialog[data-fmt="reel"] .player{width:auto;max-width:100%;height:min(78vh,700px);aspect-ratio:9/16;margin:0 auto}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a href="#">Tu Nombre</a>
+    <nav><a href="#trabajos">Trabajos</a><a href="#sobre-mi">Sobre mí</a><a href="#contacto">Contacto</a></nav>
+  </header>
+
+  <section class="hero">
+    <h1>Video que cuenta historias.</h1>
+    <p>Videos para YouTube y reels: edición, dirección y producción. Mira mis trabajos más recientes.</p>
+  </section>
+
+  <section id="trabajos" aria-label="Trabajos">
+    <div class="filters" id="filters" role="group" aria-label="Filtrar por categoría"></div>
+    <div id="grid"></div>
+  </section>
+
+  <section class="about" id="sobre-mi">
+    <h2>Sobre mí</h2>
+    <p>Escribe aquí dos o tres frases: quién eres, qué tipo de videos haces y con quién has trabajado. Cuenta qué te diferencia y qué tipo de proyectos buscas.</p>
+  </section>
+
+  <section class="contact" id="contacto">
+    <h2>¿Hacemos algo juntos?</h2>
+    <a class="big" href="mailto:tucorreo@ejemplo.com">tucorreo@ejemplo.com</a>
+    <ul>
+      <li><a href="https://instagram.com/tuusuario">Instagram</a></li>
+      <li><a href="https://youtube.com/@tuusuario">YouTube</a></li>
+      <li><a href="https://vimeo.com/tuusuario">Vimeo</a></li>
+    </ul>
+  </section>
+</div>
+
+<dialog id="dlg" aria-label="Reproductor de video">
+  <div class="player" id="player"></div>
+  <div class="dinfo">
+    <div><strong id="dt"></strong><p id="dm"></p></div>
+    <button id="close" type="button">Cerrar</button>
+  </div>
+</dialog>
+
+<script>
+/* ============ EDITA AQUÍ TUS VIDEOS ============
+   fmt:  "yt" (horizontal, YouTube) | "reel" (vertical)
+   type: "youtube" (también sirve para Shorts) | "instagram" | "vimeo" | "file"
+   id:   ID del video de YouTube/Vimeo, código del reel de Instagram
+         (instagram.com/reel/ESTE_CODIGO/) o ruta del archivo (ej. "videos/reel1.mp4")
+   thumb (opcional): ruta de una imagen, ej. "img/reel1.jpg". En YouTube se usa la miniatura automática.
+*/
+
+const grid = document.getElementById("grid");
+const filtersEl = document.getElementById("filters");
+const dlg = document.getElementById("dlg");
+const player = document.getElementById("player");
+let active = "Todos";
+
+const thumbOf = v => v.thumb || (v.type === "youtube" ? `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg` : "");
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+function renderFilters(){
+  const opts=[["Todos","Todos"],["yt","YouTube"],["reel","Reels"]];
+  filtersEl.innerHTML = opts.map(([k,l]) => `<button type="button" aria-pressed="${k===active}" data-c="${k}">${l}</button>`).join("");
+}
+
+function card(v,i){
+  const t = thumbOf(v);
+  return `<button class="item" type="button" data-i="${i}" aria-label="Ver ${esc(v.title)}">
+    <div class="thumb">${t ? `<img src="${esc(t)}" alt="" loading="lazy" onerror="this.remove()">` : ""}
+      <span class="play"></span><span class="dur">${esc(v.dur||"")}</span></div>
+    <h3>${esc(v.title)}</h3><span class="meta">${esc(v.cat)} · ${esc(v.year)}</span>
+  </button>`;
+}
+
+function renderGrid(){
+  const groups=[["yt","YouTube"],["reel","Reels"]];
+  const html = groups.filter(([k]) => active==="Todos" || active===k).map(([k,l]) => {
+    const items = VIDEOS.map((v,i)=>({v,i})).filter(({v}) => v.fmt===k);
+    if(!items.length) return "";
+    return `<section class="sec"><h2>${l}</h2><div class="grid ${k==="reel"?"reels":""}">${items.map(({v,i})=>card(v,i)).join("")}</div></section>`;
+  }).join("");
+  grid.innerHTML = html || '<p class="empty">No hay videos en esta categoría todavía.</p>';
+}
+
+function open(i){
+  const v = VIDEOS[i], id = encodeURIComponent(v.id), ti = esc(v.title);
+  dlg.dataset.fmt = v.fmt;
+  if(v.type==="youtube") player.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" title="${ti}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+  else if(v.type==="vimeo") player.innerHTML = `<iframe src="https://player.vimeo.com/video/${id}?autoplay=1" title="${ti}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+  else if(v.type==="instagram") player.innerHTML = `<iframe src="https://www.instagram.com/reel/${id}/embed" title="${ti}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+  else player.innerHTML = `<video src="${esc(v.id)}" controls autoplay playsinline></video>`;
+  document.getElementById("dt").textContent = v.title;
+  document.getElementById("dm").textContent = `${v.fmt==="reel"?"Reel":"YouTube"} · ${v.cat} · ${v.year}`;
+  dlg.showModal();
+}
+
+function close(){ dlg.close(); }
+dlg.addEventListener("close", () => { player.innerHTML = ""; });
+dlg.addEventListener("click", e => { if(e.target === dlg) close(); });
+document.getElementById("close").addEventListener("click", close);
+
+filtersEl.addEventListener("click", e => {
+  const b = e.target.closest("button"); if(!b) return;
+  active = b.dataset.c; renderFilters(); renderGrid();
+});
+grid.addEventListener("click", e => {
+  const b = e.target.closest(".item"); if(b) open(+b.dataset.i);
+});
+
+renderFilters(); renderGrid();
+</script>
+</body>
+</html>
