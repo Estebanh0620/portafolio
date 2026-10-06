@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tu Nombre — Portafolio de video</title>
-<meta name="description" content="Portafolio de videos de Tu Nombre.">
+<title>Tu Nombre — Portafolio de video / Video portfolio</title>
+<meta name="description" content="Portafolio de videos / Video portfolio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
@@ -22,9 +22,12 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1
 a{color:inherit}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-header.top{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+header.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 24px;padding:20px 0}
 header.top a{text-decoration:none;font-weight:500}
-header.top nav{display:flex;gap:20px}
+header.top nav{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.lang{display:flex;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.lang button{font:inherit;font-size:.9rem;background:none;color:var(--ink);border:0;padding:4px 12px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
 .hero{padding:7vh 0 6vh}
 .hero h1{font-size:clamp(3rem,13vw,9rem);line-height:.9;letter-spacing:-.04em;font-weight:700}
 .hero p{max-width:34ch;margin-top:24px;font-size:1.2rem;color:var(--muted)}
@@ -35,12 +38,20 @@ header.top nav{display:flex;gap:20px}
 .item{background:none;border:0;padding:0;text-align:left;font:inherit;color:inherit;cursor:pointer}
 .thumb{position:relative;aspect-ratio:16/9;background:linear-gradient(135deg,var(--accent),var(--ink));overflow:hidden;border-radius:4px}
 .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.thumb video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
 .item:hover .thumb img{transform:scale(1.04)}
 .play{position:absolute;left:12px;bottom:12px;width:44px;height:44px;border-radius:50%;background:var(--bg);display:grid;place-items:center}
 .play::after{content:"";border-left:14px solid var(--ink);border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:4px}
 .dur{position:absolute;right:10px;bottom:10px;background:var(--ink);color:var(--bg);font-size:.8rem;padding:2px 8px;border-radius:3px;font-variant-numeric:tabular-nums}
 .item h3{margin-top:10px;font-size:1.15rem;font-weight:500}
 .item span.meta{color:var(--muted);font-size:.95rem}
+.sec h2{font-size:1.4rem;font-weight:500;padding:8px 0 18px}
+.sec .note{max-width:62ch;color:var(--muted);margin:-8px 0 20px}
+.grid.reels{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:20px 14px}
+.reels .thumb{aspect-ratio:9/16}
+.reels .play{width:36px;height:36px;left:8px;bottom:8px}
+.reels .item h3{font-size:1rem}
+.empty{color:var(--muted);padding:20px 0}
 .about{display:grid;gap:24px;padding:50px 0;border-top:1px solid var(--line)}
 .about h2,.contact h2{font-size:clamp(1.8rem,5vw,3rem);letter-spacing:-.02em;line-height:1.05}
 .about p{max-width:60ch;color:var(--muted);font-size:1.1rem}
@@ -55,12 +66,6 @@ dialog::backdrop{background:rgba(5,8,14,.85)}
 .dinfo{padding:14px 18px;display:flex;justify-content:space-between;gap:16px;align-items:start;background:var(--card);color:var(--ink)}
 .dinfo p{color:var(--muted);font-size:.95rem}
 .dinfo button{font:inherit;background:var(--ink);color:var(--bg);border:0;border-radius:4px;padding:6px 14px;cursor:pointer}
-.empty{color:var(--muted);padding:20px 0}
-.sec h2{font-size:1.4rem;font-weight:500;padding:8px 0 18px}
-.grid.reels{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:20px 14px}
-.reels .thumb{aspect-ratio:9/16}
-.reels .play{width:36px;height:36px;left:8px;bottom:8px}
-.reels .item h3{font-size:1rem}
 dialog[data-fmt="reel"]{width:min(420px,94vw)}
 dialog[data-fmt="reel"] .player{width:auto;max-width:100%;height:min(78vh,700px);aspect-ratio:9/16;margin:0 auto}
 </style>
@@ -69,96 +74,155 @@ dialog[data-fmt="reel"] .player{width:auto;max-width:100%;height:min(78vh,700px)
 <div class="wrap">
   <header class="top">
     <a href="#">Tu Nombre</a>
-    <nav><a href="#trabajos">Trabajos</a><a href="#sobre-mi">Sobre mí</a><a href="#contacto">Contacto</a></nav>
+    <nav>
+      <a href="#trabajos" data-i18n="nav_work"></a>
+      <a href="#sobre-mi" data-i18n="nav_about"></a>
+      <a href="#contacto" data-i18n="nav_contact"></a>
+      <div class="lang" role="group" id="lang" aria-label="Idioma / Language">
+        <button type="button" data-lang="es">ES</button><button type="button" data-lang="en">EN</button>
+      </div>
+    </nav>
   </header>
 
   <section class="hero">
-    <h1>Video que cuenta historias.</h1>
-    <p>Videos para YouTube y reels: edición, dirección y producción. Mira mis trabajos más recientes.</p>
+    <h1 data-i18n="h1"></h1>
+    <p data-i18n="hero_p"></p>
   </section>
 
-  <section id="trabajos" aria-label="Trabajos">
-    <div class="filters" id="filters" role="group" aria-label="Filtrar por categoría"></div>
+  <section id="trabajos">
+    <div class="filters" id="filters" role="group"></div>
     <div id="grid"></div>
   </section>
 
   <section class="about" id="sobre-mi">
-    <h2>Sobre mí</h2>
-    <p>Escribe aquí dos o tres frases: quién eres, qué tipo de videos haces y con quién has trabajado. Cuenta qué te diferencia y qué tipo de proyectos buscas.</p>
+    <h2 data-i18n="about_h"></h2>
+    <p data-i18n="about_p"></p>
   </section>
 
   <section class="contact" id="contacto">
-    <h2>¿Hacemos algo juntos?</h2>
-    <a class="big" href="mailto:tucorreo@ejemplo.com">tucorreo@ejemplo.com</a>
+    <h2 data-i18n="contact_h"></h2>
+    <a class="big" href="mailto:estebanm.hc03@gmail.com">estebanm.hc03@gmail.com</a>
     <ul>
-      <li><a href="https://instagram.com/tuusuario">Instagram</a></li>
-      <li><a href="https://youtube.com/@tuusuario">YouTube</a></li>
-      <li><a href="https://vimeo.com/tuusuario">Vimeo</a></li>
+      <li><a href="https://www.linkedin.com/in/esteban-hurtado-141703421/" target="_blank" rel="noopener">LinkedIn</a></li>
     </ul>
   </section>
 </div>
 
-<dialog id="dlg" aria-label="Reproductor de video">
+<dialog id="dlg">
   <div class="player" id="player"></div>
   <div class="dinfo">
     <div><strong id="dt"></strong><p id="dm"></p></div>
-    <button id="close" type="button">Cerrar</button>
+    <button id="close" type="button" data-i18n="close"></button>
   </div>
 </dialog>
 
 <script>
+/* ============ TEXTOS / TEXTS (ES + EN) ============ */
+const I18N = {
+  es:{
+    nav_work:"Trabajos", nav_about:"Sobre mí", nav_contact:"Contacto",
+    h1:"Video que cuenta historias.",
+    hero_p:"Videos para YouTube y reels: edición, dirección y producción. Mira mis trabajos más recientes.",
+    f_all:"Todos", f_yt:"YouTube", f_reel:"Reels", f_ref:"Referencias",
+    sec_yt:"YouTube", sec_reel:"Reels", sec_ref:"Trabajos de referencia: webinar",
+    ref_note:"Estas piezas no son ediciones mías. Son referencias del tipo de edición y acabado para webinar que puedo hacer.",
+    about_h:"Sobre mí",
+    about_p:"Soy estudiante de Ingeniería Multimedia y editor de video freelance, enfocado en crear contenido profesional para proyectos corporativos, educativos y redes sociales. Combino edición, diseño y criterio audiovisual para conseguir videos limpios, dinámicos y fáciles de entender, especialmente cuando el contenido necesita comunicar ideas complejas sin perder naturalidad. Busco colaborar con empresas y profesionales que valoren una edición cuidadosa, funcional y pensada para generar impacto.",
+    contact_h:"¿Hacemos algo juntos?",
+    close:"Cerrar", empty:"No hay videos en esta categoría todavía.",
+    lbl_yt:"YouTube", lbl_reel:"Reel", lbl_ref:"Referencia", watch:"Ver",
+    filter_aria:"Filtrar por formato", player_aria:"Reproductor de video"
+  },
+  en:{
+    nav_work:"Work", nav_about:"About", nav_contact:"Contact",
+    h1:"Video that tells stories.",
+    hero_p:"Videos for YouTube and reels: editing, direction and production. See my most recent work.",
+    f_all:"All", f_yt:"YouTube", f_reel:"Reels", f_ref:"References",
+    sec_yt:"YouTube", sec_reel:"Reels", sec_ref:"Reference work: webinar",
+    ref_note:"These pieces are not my edits. They are references for the kind of webinar editing and finish I can deliver.",
+    about_h:"About me",
+    about_p:"I'm a Multimedia Engineering student and freelance video editor, focused on creating professional content for corporate, educational and social media projects. I combine editing, design and audiovisual judgment to deliver clean, dynamic videos that are easy to follow, especially when the content has to explain complex ideas without losing a natural feel. I'm looking to work with companies and professionals who value careful, functional editing designed to make an impact.",
+    contact_h:"Want to work together?",
+    close:"Close", empty:"There are no videos in this category yet.",
+    lbl_yt:"YouTube", lbl_reel:"Reel", lbl_ref:"Reference", watch:"Watch",
+    filter_aria:"Filter by format", player_aria:"Video player"
+  }
+};
+
 /* ============ EDITA AQUÍ TUS VIDEOS ============
-   fmt:  "yt" (horizontal, YouTube) | "reel" (vertical)
-   type: "youtube" (también sirve para Shorts) | "instagram" | "vimeo" | "file"
-   id:   ID del video de YouTube/Vimeo, código del reel de Instagram
-         (instagram.com/reel/ESTE_CODIGO/) o ruta del archivo (ej. "videos/reel1.mp4")
-   thumb (opcional): ruta de una imagen, ej. "img/reel1.jpg". En YouTube se usa la miniatura automática.
+   fmt:  "yt" (YouTube horizontal) | "reel" (vertical) | "ref" (referencia de otros, no tuyo)
+   type: "youtube" (id = youtube.com/watch?v=ESTE_ID) | "file" (id = ruta, ej. "videos/video1.mp4")
+   start (opcional): segundo donde inicia el video de YouTube
+   title y cat: texto simple, o {es:"...", en:"..."} para traducirlos
+   dur (opcional): ej. "0:30"
+   thumb (opcional): ruta de imagen de portada
 */
+const VIDEOS = [
+  { title:{es:"Título de tu video de YouTube",en:"Your YouTube video title"}, fmt:"yt", cat:{es:"Edición",en:"Editing"}, year:2026, type:"youtube", id:"SGbNJopyXxU" },
+  { title:"Reel 1", fmt:"reel", cat:{es:"Redes sociales",en:"Social media"}, year:2026, type:"file", id:"videos/video1.mp4" },
+  { title:"Reel 2", fmt:"reel", cat:{es:"Redes sociales",en:"Social media"}, year:2026, type:"file", id:"videos/video2.mp4" },
+  { title:{es:"Referencia de webinar 1",en:"Webinar reference 1"}, fmt:"ref", cat:{es:"Referencia · Webinar",en:"Reference · Webinar"}, type:"youtube", id:"5dgpcQXq1eo", start:65 },
+  { title:{es:"Referencia de webinar 2",en:"Webinar reference 2"}, fmt:"ref", cat:{es:"Referencia · Webinar",en:"Reference · Webinar"}, type:"youtube", id:"vxi0OJwrotI", start:13 }
+];
+/* ================================================ */
 
 const grid = document.getElementById("grid");
 const filtersEl = document.getElementById("filters");
 const dlg = document.getElementById("dlg");
 const player = document.getElementById("player");
 let active = "Todos";
+let lang = "es";
+try { lang = localStorage.getItem("lang") || (navigator.language||"es").slice(0,2); } catch(e) { lang = (navigator.language||"es").slice(0,2); }
+if(!I18N[lang]) lang = "es";
 
+const t = k => I18N[lang][k];
+const tr = x => (x && typeof x === "object") ? (x[lang] || x.es) : (x || "");
 const thumbOf = v => v.thumb || (v.type === "youtube" ? `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg` : "");
-
 function esc(s){ return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+const metaOf = v => [tr(v.cat), v.year].filter(Boolean).join(" · ");
 
 function renderFilters(){
-  const opts=[["Todos","Todos"],["yt","YouTube"],["reel","Reels"]];
-  filtersEl.innerHTML = opts.map(([k,l]) => `<button type="button" aria-pressed="${k===active}" data-c="${k}">${l}</button>`).join("");
+  const opts=[["Todos","f_all"],["yt","f_yt"],["reel","f_reel"],["ref","f_ref"]];
+  filtersEl.setAttribute("aria-label", t("filter_aria"));
+  filtersEl.innerHTML = opts.map(([k,l]) => `<button type="button" aria-pressed="${k===active}" data-c="${k}">${t(l)}</button>`).join("");
 }
 
 function card(v,i){
-  const t = thumbOf(v);
-  return `<button class="item" type="button" data-i="${i}" aria-label="Ver ${esc(v.title)}">
-    <div class="thumb">${t ? `<img src="${esc(t)}" alt="" loading="lazy" onerror="this.remove()">` : ""}
-      <span class="play"></span><span class="dur">${esc(v.dur||"")}</span></div>
-    <h3>${esc(v.title)}</h3><span class="meta">${esc(v.cat)} · ${esc(v.year)}</span>
+  const th = thumbOf(v), title = tr(v.title);
+  const media = th ? `<img src="${esc(th)}" alt="" loading="lazy" onerror="this.remove()">` : (v.type==="file" ? `<video src="${esc(v.id)}#t=0.5" preload="metadata" muted playsinline></video>` : "");
+  return `<button class="item" type="button" data-i="${i}" aria-label="${t("watch")} ${esc(title)}">
+    <div class="thumb">${media}
+      <span class="play"></span>${v.dur ? `<span class="dur">${esc(v.dur)}</span>` : ""}</div>
+    <h3>${esc(title)}</h3><span class="meta">${esc(metaOf(v))}</span>
   </button>`;
 }
 
 function renderGrid(){
-  const groups=[["yt","YouTube"],["reel","Reels"]];
-  const html = groups.filter(([k]) => active==="Todos" || active===k).map(([k,l]) => {
+  const groups=[["yt","sec_yt"],["reel","sec_reel"],["ref","sec_ref"]];
+  const html = groups.filter(([k]) => active==="Todos" || active===k).map(([k,h]) => {
     const items = VIDEOS.map((v,i)=>({v,i})).filter(({v}) => v.fmt===k);
     if(!items.length) return "";
-    return `<section class="sec"><h2>${l}</h2><div class="grid ${k==="reel"?"reels":""}">${items.map(({v,i})=>card(v,i)).join("")}</div></section>`;
+    return `<section class="sec"><h2>${t(h)}</h2>${k==="ref" ? `<p class="note">${t("ref_note")}</p>` : ""}<div class="grid ${k==="reel"?"reels":""}">${items.map(({v,i})=>card(v,i)).join("")}</div></section>`;
   }).join("");
-  grid.innerHTML = html || '<p class="empty">No hay videos en esta categoría todavía.</p>';
+  grid.innerHTML = html || `<p class="empty">${t("empty")}</p>`;
 }
 
 function open(i){
-  const v = VIDEOS[i], id = encodeURIComponent(v.id), ti = esc(v.title);
+  const v = VIDEOS[i], id = encodeURIComponent(v.id), title = tr(v.title);
   dlg.dataset.fmt = v.fmt;
-  if(v.type==="youtube") player.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" title="${ti}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
-  else if(v.type==="vimeo") player.innerHTML = `<iframe src="https://player.vimeo.com/video/${id}?autoplay=1" title="${ti}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
-  else if(v.type==="instagram") player.innerHTML = `<iframe src="https://www.instagram.com/reel/${id}/embed" title="${ti}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+  if(v.type==="youtube") player.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0${v.start ? `&start=${v.start}` : ""}" title="${esc(title)}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
   else player.innerHTML = `<video src="${esc(v.id)}" controls autoplay playsinline></video>`;
-  document.getElementById("dt").textContent = v.title;
-  document.getElementById("dm").textContent = `${v.fmt==="reel"?"Reel":"YouTube"} · ${v.cat} · ${v.year}`;
+  document.getElementById("dt").textContent = title;
+  document.getElementById("dm").textContent = [t("lbl_"+v.fmt), metaOf(v)].filter(Boolean).join(" · ");
   dlg.showModal();
+}
+
+function applyLang(){
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll("#lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+  dlg.setAttribute("aria-label", t("player_aria"));
+  renderFilters(); renderGrid();
 }
 
 function close(){ dlg.close(); }
@@ -166,6 +230,12 @@ dlg.addEventListener("close", () => { player.innerHTML = ""; });
 dlg.addEventListener("click", e => { if(e.target === dlg) close(); });
 document.getElementById("close").addEventListener("click", close);
 
+document.getElementById("lang").addEventListener("click", e => {
+  const b = e.target.closest("button"); if(!b) return;
+  lang = b.dataset.lang;
+  try { localStorage.setItem("lang", lang); } catch(err) {}
+  applyLang();
+});
 filtersEl.addEventListener("click", e => {
   const b = e.target.closest("button"); if(!b) return;
   active = b.dataset.c; renderFilters(); renderGrid();
@@ -174,7 +244,7 @@ grid.addEventListener("click", e => {
   const b = e.target.closest(".item"); if(b) open(+b.dataset.i);
 });
 
-renderFilters(); renderGrid();
+applyLang();
 </script>
 </body>
 </html>
